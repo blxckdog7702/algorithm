@@ -1,5 +1,8 @@
 package util;
 
+import java.util.Arrays;
+import java.util.Comparator;
+
 public class Util {
 	// n개중에 r개 뽑는 경우의 수(조합)
 	public static int combination(int n, int r) {
@@ -89,4 +92,14 @@ public class Util {
 
 		return (a * b) / small;
 	}
+	
+	//2차원 배열 정렬 {기준, ?}
+//	Arrays.sort(arr, new Comparator<int[]>() {
+//
+//		@Override
+//		public int compare(int[] o1, int[] o2) {
+//			return Integer.compare(o1[0], o2[0]);
+//		}
+//		
+//	});
 }
