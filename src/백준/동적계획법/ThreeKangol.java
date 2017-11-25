@@ -2,6 +2,8 @@ package 백준.동적계획법;
 
 import java.util.Scanner;
 
+//2965번(동적계획법)
+
 public class ThreeKangol {
 
 	public static void main(String[] args) {
