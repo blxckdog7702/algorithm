@@ -34,7 +34,7 @@ public class NumberTri {
 				}
 				// 중간에 위치한 나머지 케이스
 				else {
-					// 중간 노드의 값은 둘 중 큰 것을 넣는다.
+					// 중간 노드의 값은 양쪽 중 큰 것을 넣는다.
 					dp[i][j] = Math.max(dp[i - 1][j - 1], dp[i - 1][j]) + tree[i][j];
 				}
 
