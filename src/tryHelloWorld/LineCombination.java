@@ -1,4 +1,4 @@
-package algorithm;
+package tryHelloWorld;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -34,7 +34,7 @@ class LineCombination {
 		return result;
 	}
 
-	// ¾Æ·¡´Â Å×½ºÆ®·Î Ãâ·ÂÇØ º¸±â À§ÇÑ ÄÚµåÀÔ´Ï´Ù.
+	// ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½×½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ï¿½Ô´Ï´ï¿½.
 	public static void main(String[] args) {
 		LineCombination lc = new LineCombination();
 		System.out.println(Arrays.toString(lc.setAlign(4, 12)));

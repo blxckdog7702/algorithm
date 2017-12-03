@@ -1,4 +1,4 @@
-package algorithm;
+package tryHelloWorld;
 
 public class Pos {
 

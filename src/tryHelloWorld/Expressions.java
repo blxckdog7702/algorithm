@@ -1,4 +1,4 @@
-package algorithm;
+package tryHelloWorld;
 
 public class Expressions {
 
@@ -23,7 +23,7 @@ public class Expressions {
 
 	public static void main(String args[]) {
 		Expressions expressions = new Expressions();
-		// ¾Æ·¡´Â Å×½ºÆ®·Î Ãâ·ÂÇØ º¸±â À§ÇÑ ÄÚµåÀÔ´Ï´Ù.
+		// ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½×½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ï¿½Ô´Ï´ï¿½.
 		System.out.println(expressions.expressions(15));
 	}
 }

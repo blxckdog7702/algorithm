@@ -1,4 +1,4 @@
-package algorithm;
+package tryHelloWorld;
 
 public class Caesar {
 	String caesar(String s, int n) {
@@ -27,13 +27,13 @@ public class Caesar {
 			}
 		}
 		String result = String.valueOf(arr);
-		// ÇÔ¼ö¸¦ ¿Ï¼ºÇÏ¼¼¿ä.
+		// ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½Ï¼ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½.
 
 		return result;
 	}
 
 	public static void main(String[] args) {
 		Caesar c = new Caesar();
-		System.out.println("s´Â 'a B z', nÀº 4ÀÎ °æ¿ì: " + c.caesar("a B z", 4));
+		System.out.println("sï¿½ï¿½ 'a B z', nï¿½ï¿½ 4ï¿½ï¿½ ï¿½ï¿½ï¿½: " + c.caesar("a B z", 4));
 	}
 }

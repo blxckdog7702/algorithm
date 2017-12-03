@@ -1,6 +1,6 @@
-package algorithm;
+package tryHelloWorld;
 
-import java.util.Arrays; //Å×½ºÆ®·Î Ãâ·ÂÇØ º¸±â À§ÇÑ ÄÚµåÀÔ´Ï´Ù.
+import java.util.Arrays; //ï¿½×½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ï¿½Ô´Ï´ï¿½.
 
 public class BestSet {
 
@@ -27,7 +27,7 @@ public class BestSet {
     }
     public static void main(String[] args) {
         BestSet c = new BestSet();
-        //¾Æ·¡´Â Å×½ºÆ®·Î Ãâ·ÂÇØ º¸±â À§ÇÑ ÄÚµåÀÔ´Ï´Ù.
+        //ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½×½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ï¿½Ô´Ï´ï¿½.
         System.out.println(Arrays.toString(c.bestSet(3,13)));
     }
 

@@ -1,4 +1,4 @@
-package algorithm;
+package tryHelloWorld;
 
 import java.util.Arrays;
 
