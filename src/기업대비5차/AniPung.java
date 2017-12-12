@@ -1,6 +1,15 @@
 package 기업대비5차;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
+
+class OutOfTileRangeException extends Exception {
+	private static final long serialVersionUID = -6723341209501382298L;
+
+	public OutOfTileRangeException() {
+		super("타일은 1~4 범위 내의 숫자여야 합니다.");
+	}
+}
 
 public class AniPung {
 	private static final int COL = 5;
@@ -9,82 +18,128 @@ public class AniPung {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 
-		int[][] arr = new int[ROW + 2][COL + 2];
+		int[][] tiles = new int[ROW + 2][COL + 2];
 		boolean[][] checkArr = new boolean[ROW][COL];
 
-		for (int i = 0; i < ROW; i++) {
-			for (int j = 0; j < COL; j++) {
-				arr[i][j] = sc.nextInt();
-			}
+		// 타일 값 입력.
+		try {
+			inputTiles(sc, tiles);
+		} catch (InputMismatchException e) {
+			System.out.println("입력 값은 숫자여야 합니다.");
+			return;
+		} catch (OutOfTileRangeException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+			return;
+		} finally {
+			sc.close();
 		}
-
-		sc.close();
 
 		boolean isFinish = false;
 
 		while (!isFinish) {
 			isFinish = true;
-			
-			for (int i = 0; i < ROW; i++) {
-				for (int j = 0; j < COL; j++) {
-					// 가로 판별
-					if (arr[i][j] == arr[i][j + 1] && arr[i][j] == arr[i][j + 2] && arr[i][j] != 0) {
-						int count = j;
-						while (arr[i][j] == arr[i][count]) {
-							checkArr[i][count] = true;
-							count++;
-						}
-						isFinish = false;
-					}
 
-					// 세로 판별
-					if (arr[i][j] == arr[i + 1][j] && arr[i][j] == arr[i + 2][j] && arr[i][j] != 0) {
-						int count = i;
-						while (arr[i][j] == arr[count][j]) {
-							checkArr[count][j] = true;
-							count++;
-						}
-						isFinish = false;
-					}
-				}
-			}
+			// 터뜨릴 타일이 없으면 isFinish를 true로 유지한다.
+			isFinish = checkTiles(tiles, checkArr, isFinish);
 
-			// 터뜨리는 부분
-			for (int i = 0; i < ROW; i++) {
-				for (int j = 0; j < COL; j++) {
-					if (checkArr[i][j]) {
-						arr[i][j] = 0;
-						checkArr[i][j] = false;
-					}
-				}
-			}
+			// 체크한 타일을 터뜨린다.
+			removeTiles(tiles, checkArr);
 
-			// 중력 작용
-			for (int j = 0; j < COL; j++) {
-				for (int i = ROW - 1; i > 0; i--) {
-					if(arr[i][j] == 0) {
-						int index = i;
-						while(arr[index][j] == 0) {
-							if(index == 0) {
-								break;
-							}
-							index--;
-						}
-						
-						arr[i][j] = arr[index][j];
-						arr[index][j] = 0;
-					}
-				}
-			}
+			// 타일을 터뜨린 뒤, 빈칸이 있으면 내려오도록 정리한다.
+			arrangeTiles(tiles);
 		}
 
-		//출력
+		// 결과 타일 값 출력.
+		printTiles(tiles);
+	}
+
+	private static void inputTiles(Scanner sc, int[][] tiles) throws OutOfTileRangeException {
+		int input;
 		for (int i = 0; i < ROW; i++) {
 			for (int j = 0; j < COL; j++) {
-				System.out.print(" " + arr[i][j]);
+				input = sc.nextInt();
+				
+				if(input < 1 || input > 4) {
+					throw new OutOfTileRangeException();
+				}
+				
+				tiles[i][j] = input;
+			}
+		}
+	}
+
+	private static void printTiles(int[][] tiles) {
+		// 출력
+		for (int i = 0; i < ROW; i++) {
+			for (int j = 0; j < COL; j++) {
+				if (j == 0) {
+					System.out.print(tiles[i][j]);
+				} else {
+					System.out.print(" " + tiles[i][j]);
+				}
 			}
 			System.out.println();
 		}
+	}
+
+	private static void arrangeTiles(int[][] tiles) {
+		// 중력 작용
+		for (int j = 0; j < COL; j++) {
+			for (int i = ROW - 1; i > 0; i--) {
+				if (tiles[i][j] == 0) {
+					int index = i;
+					while (tiles[index][j] == 0) {
+						if (index == 0) {
+							break;
+						}
+						index--;
+					}
+
+					tiles[i][j] = tiles[index][j];
+					tiles[index][j] = 0;
+				}
+			}
+		}
+	}
+
+	private static void removeTiles(int[][] tiles, boolean[][] checkArr) {
+		// 터뜨리는 부분
+		for (int i = 0; i < ROW; i++) {
+			for (int j = 0; j < COL; j++) {
+				if (checkArr[i][j]) {
+					tiles[i][j] = 0;
+					checkArr[i][j] = false;
+				}
+			}
+		}
+	}
+
+	private static boolean checkTiles(int[][] tiles, boolean[][] checkArr, boolean isFinish) {
+		for (int i = 0; i < ROW; i++) {
+			for (int j = 0; j < COL; j++) {
+				// 가로 판별
+				if (tiles[i][j] == tiles[i][j + 1] && tiles[i][j] == tiles[i][j + 2] && tiles[i][j] != 0) {
+					int count = j;
+					while (tiles[i][j] == tiles[i][count]) {
+						checkArr[i][count] = true;
+						count++;
+					}
+					isFinish = false;
+				}
+
+				// 세로 판별
+				if (tiles[i][j] == tiles[i + 1][j] && tiles[i][j] == tiles[i + 2][j] && tiles[i][j] != 0) {
+					int count = i;
+					while (tiles[i][j] == tiles[count][j]) {
+						checkArr[count][j] = true;
+						count++;
+					}
+					isFinish = false;
+				}
+			}
+		}
+		return isFinish;
 	}
 
 }
