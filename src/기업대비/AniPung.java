@@ -1,4 +1,4 @@
-package 기업대비5차;
+package 기업대비;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -28,7 +28,6 @@ public class AniPung {
 			System.out.println("입력 값은 숫자여야 합니다.");
 			return;
 		} catch (OutOfTileRangeException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 			return;
 		} finally {
@@ -37,17 +36,19 @@ public class AniPung {
 
 		boolean isFinish = false;
 
-		while (!isFinish) {
-			isFinish = true;
+		while (true) {
+			// 터뜨릴 타일이 없으면 isFinish이 true가 된다.
+			isFinish = checkTiles(tiles, checkArr);
 
-			// 터뜨릴 타일이 없으면 isFinish를 true로 유지한다.
-			isFinish = checkTiles(tiles, checkArr, isFinish);
+			if (isFinish) {
+				break;
+			}
 
 			// 체크한 타일을 터뜨린다.
 			removeTiles(tiles, checkArr);
 
 			// 타일을 터뜨린 뒤, 빈칸이 있으면 내려오도록 정리한다.
-			arrangeTiles(tiles);
+			moveTiles(tiles);
 		}
 
 		// 결과 타일 값 출력.
@@ -56,21 +57,21 @@ public class AniPung {
 
 	private static void inputTiles(Scanner sc, int[][] tiles) throws OutOfTileRangeException {
 		int input;
+
 		for (int i = 0; i < ROW; i++) {
 			for (int j = 0; j < COL; j++) {
 				input = sc.nextInt();
-				
-				if(input < 1 || input > 4) {
+
+				if (input < 1 || input > 4) {
 					throw new OutOfTileRangeException();
 				}
-				
+
 				tiles[i][j] = input;
 			}
 		}
 	}
 
 	private static void printTiles(int[][] tiles) {
-		// 출력
 		for (int i = 0; i < ROW; i++) {
 			for (int j = 0; j < COL; j++) {
 				if (j == 0) {
@@ -83,8 +84,7 @@ public class AniPung {
 		}
 	}
 
-	private static void arrangeTiles(int[][] tiles) {
-		// 중력 작용
+	private static void moveTiles(int[][] tiles) {
 		for (int j = 0; j < COL; j++) {
 			for (int i = ROW - 1; i > 0; i--) {
 				if (tiles[i][j] == 0) {
@@ -104,7 +104,6 @@ public class AniPung {
 	}
 
 	private static void removeTiles(int[][] tiles, boolean[][] checkArr) {
-		// 터뜨리는 부분
 		for (int i = 0; i < ROW; i++) {
 			for (int j = 0; j < COL; j++) {
 				if (checkArr[i][j]) {
@@ -115,7 +114,9 @@ public class AniPung {
 		}
 	}
 
-	private static boolean checkTiles(int[][] tiles, boolean[][] checkArr, boolean isFinish) {
+	private static boolean checkTiles(int[][] tiles, boolean[][] checkArr) {
+		boolean isFinish = true;
+
 		for (int i = 0; i < ROW; i++) {
 			for (int j = 0; j < COL; j++) {
 				// 가로 판별

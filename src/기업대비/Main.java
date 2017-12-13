@@ -1,4 +1,4 @@
-package 기업대비5차;
+package 기업대비;
 
 /* package 구문을 넣으면 안됩니다 */
 import java.util.*;
