@@ -7,15 +7,15 @@ class OutOfTileRangeException extends Exception {
 	private static final long serialVersionUID = -6723341209501382298L;
 
 	public OutOfTileRangeException() {
-		super("타일은 1~4 범위 내의 숫자여야 합니다.");
+		super("타일은 " + AniPung.MIN_TILE + " ~ " + AniPung.MAX_TILE + " 범위 내의 숫자여야 합니다.");
 	}
 }
 
 public class AniPung {
 	private static final int COL = 5;
 	private static final int ROW = 5;
-	private static final int MIN_TILE = 1;
-	private static final int MAX_TILE = 4;
+	public static final int MIN_TILE = 1;
+	public static final int MAX_TILE = 4;
 
 	private int[][] tiles;
 	private boolean[][] checkArr;
