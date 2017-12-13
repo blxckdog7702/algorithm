@@ -20,11 +20,6 @@ public class AniPung {
 	private boolean isFinish;
 
 	public AniPung() {
-		// 필드 초기화.
-		init();
-	}
-	
-	private void init() {
 		tiles = new int[ROW + 2][COL + 2];
 		checkArr = new boolean[ROW][COL];
 		isFinish = false;
@@ -50,7 +45,6 @@ public class AniPung {
 
 	private void inputTiles() throws OutOfTileRangeException {
 		Scanner sc = new Scanner(System.in);
-
 		int input;
 
 		for (int i = 0; i < ROW; i++) {
@@ -91,33 +85,39 @@ public class AniPung {
 
 	private boolean checkTiles() {
 		boolean isFinish = true;
+		int count;
 
 		for (int i = 0; i < ROW; i++) {
 			for (int j = 0; j < COL; j++) {
 				// 가로 판별
 				if (tiles[i][j] == tiles[i][j + 1] && tiles[i][j] == tiles[i][j + 2] && tiles[i][j] != 0) {
-					int count = j;
+					count = j;
+
 					while (tiles[i][j] == tiles[i][count]) {
 						checkArr[i][count] = true;
 						count++;
 					}
+
 					isFinish = false;
 				}
 
 				// 세로 판별
 				if (tiles[i][j] == tiles[i + 1][j] && tiles[i][j] == tiles[i + 2][j] && tiles[i][j] != 0) {
-					int count = i;
+					count = i;
+
 					while (tiles[i][j] == tiles[count][j]) {
 						checkArr[count][j] = true;
 						count++;
 					}
+
 					isFinish = false;
 				}
 			}
 		}
+
 		return isFinish;
 	}
-	
+
 	private void removeTiles() {
 		for (int i = 0; i < ROW; i++) {
 			for (int j = 0; j < COL; j++) {
@@ -128,16 +128,20 @@ public class AniPung {
 			}
 		}
 	}
-	
+
 	private void moveTiles() {
+		int index;
+
 		for (int j = 0; j < COL; j++) {
 			for (int i = ROW - 1; i > 0; i--) {
 				if (tiles[i][j] == 0) {
-					int index = i;
+					index = i;
+
 					while (tiles[index][j] == 0) {
 						if (index == 0) {
 							break;
 						}
+
 						index--;
 					}
 
@@ -147,7 +151,7 @@ public class AniPung {
 			}
 		}
 	}
-	
+
 	private void printTiles() {
 		for (int i = 0; i < ROW; i++) {
 			for (int j = 0; j < COL; j++) {
