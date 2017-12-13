@@ -14,6 +14,8 @@ class OutOfTileRangeException extends Exception {
 public class AniPung {
 	private static final int COL = 5;
 	private static final int ROW = 5;
+	private static final int MIN_TILE = 1;
+	private static final int MAX_TILE = 4;
 
 	private int[][] tiles;
 	private boolean[][] checkArr;
@@ -51,7 +53,7 @@ public class AniPung {
 			for (int j = 0; j < COL; j++) {
 				input = sc.nextInt();
 
-				if (input < 1 || input > 4) {
+				if (input < MIN_TILE || input > MAX_TILE) {
 					sc.close();
 					throw new OutOfTileRangeException();
 				}
