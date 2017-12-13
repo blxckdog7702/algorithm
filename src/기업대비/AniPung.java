@@ -15,47 +15,42 @@ public class AniPung {
 	private static final int COL = 5;
 	private static final int ROW = 5;
 
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
+	private int[][] tiles;
+	private boolean[][] checkArr;
+	private boolean isFinish;
 
-		int[][] tiles = new int[ROW + 2][COL + 2];
-		boolean[][] checkArr = new boolean[ROW][COL];
+	public AniPung() {
+		// 필드 초기화.
+		init();
+	}
+	
+	private void init() {
+		tiles = new int[ROW + 2][COL + 2];
+		checkArr = new boolean[ROW][COL];
+		isFinish = false;
+	}
 
-		// 타일 값 입력.
+	public void gameStart() {
+		// 타일 입력. 예외 발생시 게임 종료.
 		try {
-			inputTiles(sc, tiles);
+			inputTiles();
 		} catch (InputMismatchException e) {
 			System.out.println("입력 값은 숫자여야 합니다.");
+			System.out.println("게임을 종료합니다.");
 			return;
 		} catch (OutOfTileRangeException e) {
 			System.out.println(e.getMessage());
+			System.out.println("게임을 종료합니다.");
 			return;
-		} finally {
-			sc.close();
 		}
 
-		boolean isFinish = false;
-
-		while (true) {
-			// 터뜨릴 타일이 없으면 isFinish이 true가 된다.
-			isFinish = checkTiles(tiles, checkArr);
-
-			if (isFinish) {
-				break;
-			}
-
-			// 체크한 타일을 터뜨린다.
-			removeTiles(tiles, checkArr);
-
-			// 타일을 터뜨린 뒤, 빈칸이 있으면 내려오도록 정리한다.
-			moveTiles(tiles);
-		}
-
-		// 결과 타일 값 출력.
-		printTiles(tiles);
+		// 게임 로직 처리 루프.
+		gameLoop();
 	}
 
-	private static void inputTiles(Scanner sc, int[][] tiles) throws OutOfTileRangeException {
+	private void inputTiles() throws OutOfTileRangeException {
+		Scanner sc = new Scanner(System.in);
+
 		int input;
 
 		for (int i = 0; i < ROW; i++) {
@@ -63,58 +58,38 @@ public class AniPung {
 				input = sc.nextInt();
 
 				if (input < 1 || input > 4) {
+					sc.close();
 					throw new OutOfTileRangeException();
 				}
 
 				tiles[i][j] = input;
 			}
 		}
+
+		sc.close();
 	}
 
-	private static void printTiles(int[][] tiles) {
-		for (int i = 0; i < ROW; i++) {
-			for (int j = 0; j < COL; j++) {
-				if (j == 0) {
-					System.out.print(tiles[i][j]);
-				} else {
-					System.out.print(" " + tiles[i][j]);
-				}
+	private void gameLoop() {
+		while (true) {
+			// 터뜨릴 타일이 없으면 isFinish이 true가 된다.
+			isFinish = checkTiles();
+
+			if (isFinish) {
+				break;
 			}
-			System.out.println();
+
+			// 체크한 타일을 터뜨린다.
+			removeTiles();
+
+			// 타일을 터뜨린 뒤, 빈칸이 있으면 내려오도록 정리한다.
+			moveTiles();
 		}
+
+		// 결과 타일 값 출력.
+		printTiles();
 	}
 
-	private static void moveTiles(int[][] tiles) {
-		for (int j = 0; j < COL; j++) {
-			for (int i = ROW - 1; i > 0; i--) {
-				if (tiles[i][j] == 0) {
-					int index = i;
-					while (tiles[index][j] == 0) {
-						if (index == 0) {
-							break;
-						}
-						index--;
-					}
-
-					tiles[i][j] = tiles[index][j];
-					tiles[index][j] = 0;
-				}
-			}
-		}
-	}
-
-	private static void removeTiles(int[][] tiles, boolean[][] checkArr) {
-		for (int i = 0; i < ROW; i++) {
-			for (int j = 0; j < COL; j++) {
-				if (checkArr[i][j]) {
-					tiles[i][j] = 0;
-					checkArr[i][j] = false;
-				}
-			}
-		}
-	}
-
-	private static boolean checkTiles(int[][] tiles, boolean[][] checkArr) {
+	private boolean checkTiles() {
 		boolean isFinish = true;
 
 		for (int i = 0; i < ROW; i++) {
@@ -142,5 +117,52 @@ public class AniPung {
 		}
 		return isFinish;
 	}
+	
+	private void removeTiles() {
+		for (int i = 0; i < ROW; i++) {
+			for (int j = 0; j < COL; j++) {
+				if (checkArr[i][j]) {
+					tiles[i][j] = 0;
+					checkArr[i][j] = false;
+				}
+			}
+		}
+	}
+	
+	private void moveTiles() {
+		for (int j = 0; j < COL; j++) {
+			for (int i = ROW - 1; i > 0; i--) {
+				if (tiles[i][j] == 0) {
+					int index = i;
+					while (tiles[index][j] == 0) {
+						if (index == 0) {
+							break;
+						}
+						index--;
+					}
 
+					tiles[i][j] = tiles[index][j];
+					tiles[index][j] = 0;
+				}
+			}
+		}
+	}
+	
+	private void printTiles() {
+		for (int i = 0; i < ROW; i++) {
+			for (int j = 0; j < COL; j++) {
+				if (j == 0) {
+					System.out.print(tiles[i][j]);
+				} else {
+					System.out.print(" " + tiles[i][j]);
+				}
+			}
+			System.out.println();
+		}
+	}
+
+	public static void main(String[] args) {
+		AniPung game = new AniPung();
+		game.gameStart();
+	}
 }
