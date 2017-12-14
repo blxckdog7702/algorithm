@@ -19,12 +19,10 @@ public class AniPung {
 
 	private int[][] tiles;
 	private boolean[][] checkArr;
-	private boolean isFinish;
 
 	public AniPung() {
 		tiles = new int[ROW + 2][COL + 2];
 		checkArr = new boolean[ROW][COL];
-		isFinish = false;
 	}
 
 	public void gameStart() {
@@ -32,15 +30,15 @@ public class AniPung {
 		try {
 			inputTiles();
 		} catch (InputMismatchException e) {
-			System.out.println("입력 값은 숫자여야 합니다.");
-			System.out.println("게임을 종료합니다.");
+			printErrorLog(e);
+			gameOver();
 			return;
 		} catch (OutOfTileRangeException e) {
-			System.out.println(e.getMessage());
-			System.out.println("게임을 종료합니다.");
+			printErrorLog(e);
+			gameOver();
 			return;
 		}
-
+		
 		// 게임 로직 처리 루프.
 		gameLoop();
 	}
@@ -64,13 +62,24 @@ public class AniPung {
 
 		sc.close();
 	}
+	
+	private void printErrorLog(Exception e) {
+		if(e instanceof InputMismatchException) {
+			System.out.println("입력 값은 숫자여야 합니다.");
+		} else {
+			System.out.println(e.getMessage());
+		}
+	}
 
+	private void gameOver() {
+		System.out.println("게임을 종료합니다.");
+	}
+	
 	private void gameLoop() {
 		while (true) {
-			// 터뜨릴 타일이 없으면 isFinish이 true가 된다.
-			isFinish = checkTiles();
-
-			if (isFinish) {
+			
+			// 터뜨릴 타일이 없으면 게임 종료.
+			if (!hasContinuousTiles()) {
 				break;
 			}
 
@@ -85,7 +94,7 @@ public class AniPung {
 		printTiles();
 	}
 
-	private boolean checkTiles() {
+	private boolean hasContinuousTiles() {
 		boolean isFinish = true;
 		int count;
 
