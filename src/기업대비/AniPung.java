@@ -1,7 +1,10 @@
 package 기업대비;
 
+import java.awt.Point;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+//2017 하반기 사이냅 소프트 공채 문제
 
 class OutOfTileRangeException extends Exception {
 	private static final long serialVersionUID = -6723341209501382298L;
@@ -19,10 +22,15 @@ public class AniPung {
 
 	private int[][] tiles;
 	private boolean[][] checkArr;
-
+	
 	public AniPung() {
 		tiles = new int[ROW + 2][COL + 2];
 		checkArr = new boolean[ROW][COL];
+	}
+	
+	public static void main(String[] args) {
+		AniPung game = new AniPung();
+		game.gameStart();
 	}
 
 	public void gameStart() {
@@ -174,10 +182,5 @@ public class AniPung {
 			}
 			System.out.println();
 		}
-	}
-
-	public static void main(String[] args) {
-		AniPung game = new AniPung();
-		game.gameStart();
 	}
 }
