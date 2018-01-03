@@ -14,13 +14,14 @@ public class NumOfWord {
 			return;
 		}
 		
-		if(!str.contains(" ")) {
-			System.out.println(1);
-			return;
-		}
+//		//딱 한 단어만 있는 케이스
+//		if(!str.contains(" ")) {
+//			System.out.println(1);
+//			return;
+//		}
 		
 		String[] strs = str.split(" ");
-		
+		//띄어쓰기가 연속 두 번인 케이스
 		int count = 0;
 		
 		for(int i = 0; i < strs.length; i++) {
@@ -28,6 +29,7 @@ public class NumOfWord {
 				count++;
 			}
 		}
+		
 		System.out.println(strs.length - count);
 		return;
 	}
