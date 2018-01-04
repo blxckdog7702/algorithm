@@ -3,7 +3,7 @@ package 백준.규칙찾기;
 import java.util.Scanner;
 
 //1011번(Fly me to the Alpha Centauri)
-//규칙을 보면 거리가 n^2 일 때, 그 거리를 기준으로 +- n 만큼 규칙이 나타난다.
+//거리가 n^2 일 때, 그 거리를 기준으로 +-n 마다 규칙이 나타난다.
 
 public class FlyMeToTheAlphaCentauri {
 
