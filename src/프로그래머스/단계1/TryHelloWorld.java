@@ -1,4 +1,4 @@
-package 단계1;
+package 프로그래머스.단계1;
 
 import java.util.Arrays;
 

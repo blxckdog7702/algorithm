@@ -1,4 +1,4 @@
-package tryHelloWorld;
+package 프로그래머스;
 
 public class Caesar {
 	String caesar(String s, int n) {
