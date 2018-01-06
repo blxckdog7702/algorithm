@@ -12,23 +12,31 @@ public class Sort1 {
 		int tc = sc.nextInt();
 
 		int[] arr = new int[tc];
-		
+
 		for (int i = 0; i < tc; i++) {
 			arr[i] = sc.nextInt();
 		}
+
+		sc.close();
+
+		// sort() 메서드를 이용한 정렬
+		// Arrays.sort(arr);
 		
-		//sort 메서드
-		Arrays.sort(arr);
-		
+		// 삽입 정렬
+		int target = 0;
+		int key = 0;
+		for (int i = 1; i < arr.length; i++) {
+			key = arr[i]; target = i - 1;
+			
+			while(target >= 0 && key < arr[target]) {
+				arr[target + 1] = arr[target];
+				target--;
+			}
+			arr[target + 1] = key;
+		}
+
+		// 출력
 		Arrays.stream(arr).forEach((n) -> System.out.println(n));
-		
-		//삽입
-//		int key = 0;
-//		
-//		for(int i = 0; i < arr.length; i++) {
-//			
-//		}
 
 	}
-
 }
