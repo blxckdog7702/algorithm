@@ -16,6 +16,7 @@ public class WomenPresident {
 			arr[i][1] = 1;
 		}
 
+		// 현재 위치 [x][y]는 [x - 1][y] + [x][y - 1]
 		for (int i = 1; i <= 14; i++) {
 			for (int j = 1; j <= 14; j++) {
 				arr[i][j] = arr[i - 1][j] + arr[i][j - 1];

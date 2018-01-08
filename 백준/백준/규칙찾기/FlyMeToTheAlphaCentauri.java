@@ -38,6 +38,7 @@ public class FlyMeToTheAlphaCentauri {
 				minRange = timePow - n + 1;
 				maxRange = timePow + n;
 				
+				//범위 안에 포함될 때
 				if(distance >= minRange && distance <= maxRange) {
 					if(distance >= minRange && distance <= timePow) {
 						System.out.println(n * 2 - 1);
