@@ -1,5 +1,6 @@
 package 백준.정렬;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 //2751번(수 정렬하기2)
@@ -26,69 +27,22 @@ public class Sort2 {
 		// mergeSort(arr, 0, arr.length - 1);
 
 		// 힙 정렬
-		//
+		// 시간복잡도 O(nlogn) 최악 O(1), 공간복잡도 O(2N)
 		heapSort(arr);
 
 		printArray(arr, sb);
 	}
 
 	private static void heapSort(int[] arr) {
-	}
+		Heap heap = new Heap();
 
-	public class Heap {
-		private int heapSize;
-		private int itemHeap[];
-
-		public Heap() {
-			heapSize = 0;
-			itemHeap = new int[50];
+		for (int i = 0; i < arr.length; i++) {
+			heap.insert(arr[i]);
 		}
 
-		public Heap(int size) {
-			heapSize = 0;
-			itemHeap = new int[size];
-		}
+		for (int i = arr.length - 1; i >= 0; --i) {
+			arr[i] = heap.delete();
 
-		public void insert(int item) {
-			int i = ++heapSize;
-
-			while ((i != 1 && item > itemHeap[i / 2])) {
-				itemHeap[i] = itemHeap[i / 2];
-				i /= 2;
-			}
-			
-			itemHeap[i] = item;
-		}
-		
-		public int getHeapSize() {
-			return this.heapSize;
-		}
-		
-		public int delete() {
-			int parent, child;
-			int item, temp;
-			
-			item = itemHeap[1];
-			temp = itemHeap[heapSize--];
-			parent = 1;
-			child = 2;
-			
-			while(child <= heapSize) {
-				if((child < heapSize) && (itemHeap[child] < itemHeap[child + 1])) {
-					child++;
-				}
-				
-				if( temp >= itemHeap[child]) {
-					break;
-				}
-				
-				itemHeap[parent] = itemHeap[child];
-				parent = child;
-				child *= 2;
-			}
-			
-			itemHeap[parent] = temp;
-			return item;
 		}
 	}
 
@@ -149,4 +103,69 @@ public class Sort2 {
 		}
 	}
 
+}
+
+class Heap {
+	private int heapSize;
+	private int itemHeap[];
+
+	public Heap() {
+		heapSize = 0;
+		itemHeap = new int[50];
+	}
+
+	public Heap(int size) {
+		heapSize = 0;
+		itemHeap = new int[size];
+	}
+
+	//
+	public void insert(int item) {
+		int i = ++heapSize;
+
+		//괄호가 > 면 작은 걸 밑으로 보내면서 정렬, 괄호가 < 면 반대
+		while ((i != 1 && item > itemHeap[i / 2])) {
+			itemHeap[i] = itemHeap[i / 2];
+			i /= 2;
+		}
+		itemHeap[i] = item;
+	}
+
+	public int getHeapSize() {
+		return this.heapSize;
+	}
+
+	public int delete() {
+		int parent, child;
+		int item, temp;
+
+		item = itemHeap[1];
+		temp = itemHeap[heapSize--];
+		parent = 1;
+		child = 2;
+
+		while (child <= heapSize) {
+
+			// child가 최종 노드가 아니고, 순차적으로 잘 정렬되어 있으면 child ++
+			// 자식노드 둘 중 큰 놈을 부모와 바꾸기 위한 child++이다.
+			if ((child < heapSize) && (itemHeap[child] < itemHeap[child + 1])) {
+				child++;
+			}
+
+			// 가장 말단 노드보다 child가 작으면 break;
+			if (temp >= itemHeap[child]) {
+				break;
+			}
+
+			// 큰 값이 위로 올라온다.
+			itemHeap[parent] = itemHeap[child];
+			parent = child;
+			child *= 2;
+		}
+		//위 과정을 반복하고 나면 정렬이 완료된다.
+		//아래 코드 때문에 삭제 후 생긴 빈 칸은 최소값으로 채워진다.
+		itemHeap[parent] = temp;
+		
+		return item;
+	}
 }
