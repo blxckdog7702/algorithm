@@ -13,7 +13,7 @@ public class StackExample {
 		int tc = sc.nextInt();
 		sc.nextLine();
 
-		Stack stack = new Stack();
+		MyStack stack = new MyStack();
 
 		for (int i = 0; i < tc; i++) {
 			switch (sc.next()) {
@@ -40,11 +40,11 @@ public class StackExample {
 	}
 }
 
-class Stack {
+class MyStack {
 	ArrayList<Integer> list;
 	int size;
 
-	public Stack() {
+	public MyStack() {
 		list = new ArrayList<>();
 		size = 0;
 	}
