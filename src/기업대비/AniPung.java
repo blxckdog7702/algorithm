@@ -1,6 +1,5 @@
 package 기업대비;
 
-import java.awt.Point;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
