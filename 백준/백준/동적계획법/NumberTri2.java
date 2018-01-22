@@ -20,28 +20,25 @@ public class NumberTri2 {
 				arr[i][j] = sc.nextInt();
 			}
 		}
-		
+
 		sc.close();
 
 		dp[0][0] = arr[0][0];
 
 		for (int i = 1; i < size; i++) {
-			for (int j = 0; j <= i; j++) {
-				// 왼쪽 끝
-				if (j == 0) {
-					dp[i][j] = dp[i - 1][j];
-				}
-				// 오른쪽 끝
-				else if (j == i) {
-					dp[i][j] = dp[i - 1][j - 1];
-				}
+			int index = i - 1;
+			
+			// 왼쪽 끝
+			dp[i][0] = dp[index][0] + arr[i][0];
+			
+			for (int j = 1; j < i; j++) {
 				// 가운데 위치했을 때
-				else {
-					dp[i][j] = Math.max(dp[i - 1][j - 1], dp[i - 1][j]);
-				}
-
-				dp[i][j] += arr[i][j];
+				dp[i][j] = Math.max(dp[index][j - 1], dp[index][j]) + arr[i][j];
 			}
+			
+			// 오른쪽 끝
+			dp[i][i] = dp[index][index] + arr[i][i];
+
 		}
 		System.out.println(Arrays.stream(dp[size - 1]).max().getAsInt());
 	}

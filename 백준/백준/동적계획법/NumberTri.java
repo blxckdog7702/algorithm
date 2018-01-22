@@ -48,5 +48,7 @@ public class NumberTri {
 		}
 
 		System.out.println(max);
+		
+		sc.close();
 	}
 }

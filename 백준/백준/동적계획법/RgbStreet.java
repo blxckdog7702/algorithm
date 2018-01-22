@@ -18,6 +18,8 @@ public class RgbStreet {
 				cost[i][j] = sc.nextInt();
 			}
 		}
+		
+		sc.close();
 
 		// dp배열 1라인 초기화
 		for (int j = 0; j < 3; j++) {
@@ -40,7 +42,6 @@ public class RgbStreet {
 				}
 			}
 		}
-
 		System.out.println(Math.min(dp[tc - 1][0], Math.min(dp[tc - 1][1], dp[tc - 1][2])));
 	}
 

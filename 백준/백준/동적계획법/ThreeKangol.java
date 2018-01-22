@@ -24,6 +24,8 @@ public class ThreeKangol {
 		}
 		
 		System.out.println(distance - 1);
+		
+		sc.close();
 	}
 
 }

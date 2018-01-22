@@ -31,6 +31,8 @@ public class FileConquer {
 			}
 
 			System.out.println(solve(dp, novel, sum, 1, page));
+			
+			sc.close();
 		}
 	}
 
