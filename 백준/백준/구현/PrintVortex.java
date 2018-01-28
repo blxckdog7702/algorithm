@@ -95,24 +95,26 @@ public class PrintVortex {
 
 		// 숫자 중 가장 큰 자릿수
 		int digitLength = (max + "").length();
-
+		
 		// 출력
 		for (int i = printY; i <= zero + r2; i++) {
 			for (int j = printX; j <= zero + c2; j++) {
-				if (digitLength == 4) {
-					System.out.printf("%4d", arr[i][j]);
-				} else if (digitLength == 3) {
-					System.out.printf("%3d", arr[i][j]);
-				} else if (digitLength == 2) {
-					System.out.printf("%2d", arr[i][j]);
-				} else {
-					System.out.printf("%d", arr[i][j]);
+				
+				int tempLeng = (arr[i][j] + "").length();
+				// 자리수에 맞게 공백 출력
+				for (int k = digitLength - tempLeng; k > 0; k--) {
+					System.out.print(" ");
 				}
+				
+				// 내용 출력
+				System.out.print(arr[i][j]);
+				
 				// 마지막 열 공백 제거
 				if (j < zero + c2) {
 					System.out.print(" ");
 				}
 			}
+			
 			// 마지막 행 개행 제거
 			if (i < zero + r2) {
 				System.out.println();
