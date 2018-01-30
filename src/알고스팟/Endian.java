@@ -21,11 +21,11 @@ public class Endian {
 			// int형 크기만큼 버퍼 할당 후 입력값 넣음
 			ByteBuffer buffer = ByteBuffer.allocate(Integer.BYTES).putInt(vInt);
 			// ByteOrder 변환
-			if (buffer.order() == ByteOrder.BIG_ENDIAN) {
+//			if (buffer.order() == ByteOrder.BIG_ENDIAN) {
 				buffer = buffer.order(ByteOrder.LITTLE_ENDIAN);
-			} else {
-				buffer = buffer.order(ByteOrder.BIG_ENDIAN);
-			}
+//			} else {
+//				buffer = buffer.order(ByteOrder.BIG_ENDIAN);
+//			}
 			// 버퍼에서 출력하기 위해 position 0으로 세팅
 			buffer.position(0);
 			int result = buffer.getInt();
