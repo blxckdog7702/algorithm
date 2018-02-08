@@ -10,17 +10,23 @@ public class Question1 {
 
 		int tc = sc.nextInt();
 
-		int[] dp = new int[tc];
+		int input = sc.nextInt();
 
-		dp[0] = sc.nextInt();
+		int currentSum = input;
+		int maxSum = input;
 
 		for (int i = 1; i < tc; i++) {
-			int input = sc.nextInt();
-
-			dp[i] = Math.max(dp[i - 1] + input, input);
+			input = sc.nextInt();
+			
+			currentSum = Math.max(currentSum + input, input);
+			
+			maxSum = Math.max(maxSum, currentSum);
+			
+//			dp[i] = Math.max(dp[i - 1] + input, input);
 		}
 
-		System.out.println(dp[tc - 1]);
+//		System.out.println(dp[tc - 1]);
+		System.out.println(maxSum);
 
 		sc.close();
 
