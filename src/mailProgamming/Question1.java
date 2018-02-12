@@ -1,4 +1,4 @@
-package DailyProgamming;
+package mailProgamming;
 
 import java.util.Scanner;
 
