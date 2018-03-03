@@ -56,6 +56,8 @@ public class Tomato {
 			}
 		}
 
+		sc.close();
+		
 		Queue<ArrayList<Coor>> q = new LinkedList<>();
 
 		ArrayList<Coor> firstList = new ArrayList<>();
