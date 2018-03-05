@@ -1,9 +1,10 @@
 package 백준.DFSBFS;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
+
+//2178번(미로탐색)
 
 public class MazeDrive {
 
@@ -16,18 +17,19 @@ public class MazeDrive {
 		// 가로
 		maze.m = sc.nextInt();
 		sc.nextLine();
-		
+
 		maze.init();
 		maze.input(sc);
 		sc.close();
-		
-//		maze.visit[1][1] = true;
-		maze.check[1][1] = 1;
-		maze.dfs(new int[] {1,1}, 1);
-		
-//		Collections.sort(maze.counts);
-//		System.out.println(maze.counts.get(0));
-		System.out.println(maze.check[maze.n][maze.m]);
+
+		maze.bfs();
+
+		System.out.println(maze.sum[maze.n][maze.m]);
+
+//		System.out.println();
+
+//		Arrays.stream(maze.sum).forEach(n -> System.out.println(Arrays.toString(n)));
+
 	}
 
 }
@@ -38,17 +40,15 @@ class Maze {
 	int[] dx = new int[] { 0, 0, 1, -1 };
 	int[] dy = new int[] { 1, -1, 0, 0 };
 	int[][] map;
-	boolean[][] visit;
-	int[][] check;
-	List<Integer> counts;
+	int[][] sum;
+	Queue<int[]> q;
 
 	public void init() {
 		map = new int[n + 1][m + 1];
-		visit = new boolean[n + 1][m + 1];
-		counts = new ArrayList<>();
-		check = new int[n + 1][n + 1];
+		sum = new int[n + 1][m + 1];
+		q = new LinkedList<>();
 	}
-	
+
 	public void input(Scanner sc) {
 		for (int i = 1; i <= n; i++) {
 			String input = sc.nextLine();
@@ -58,26 +58,32 @@ class Maze {
 			}
 		}
 	}
-	
-	public void dfs(int[] current, int tempCount) {
-		for(int i = 0; i < 4; i++) {
-			int nextY = current[0] + dy[i];
-			int nextX = current[1] + dx[i];
-			
-			if(nextY >= 1 && nextY <= n && nextX >= 1 && nextX <= m && map[nextY][nextX] == 1 && check[nextY][nextX] == 0) {
-				if(nextY == n && nextX == m) {
-					if(check[nextY][nextX] > 0) {
-						check[nextY][nextX] = Math.min(check[nextY][nextX], tempCount + 1);
-					} else {
-						check[nextY][nextX] = tempCount + 1;
+
+	public void bfs() {
+		q.add(new int[] { 1, 1 });
+		sum[1][1] = 1;
+
+		while (!q.isEmpty()) {
+			int[] current = q.poll();
+			int currentY = current[0];
+			int currentX = current[1];
+
+			for (int i = 0; i < 4; i++) {
+				int nextY = currentY + dy[i];
+				int nextX = currentX + dx[i];
+
+				if (nextY >= 1 && nextY <= n && nextX >= 1 && nextX <= m && map[nextY][nextX] == 1
+						&& sum[nextY][nextX] == 0) {
+					sum[nextY][nextX] = sum[currentY][currentX] + 1;
+
+					if (nextY == n && nextX == m) {
+						continue;
 					}
-					continue;
+
+					q.add(new int[] { nextY, nextX });
 				}
-				
-				check[nextY][nextX] = tempCount + 1;
-				dfs(new int[] {nextY, nextX}, tempCount + 1);
 			}
 		}
-		
+
 	}
 }
