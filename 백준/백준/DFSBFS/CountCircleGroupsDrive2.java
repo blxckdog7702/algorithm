@@ -1,8 +1,10 @@
 package 백준.DFSBFS;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-//10216번(Count Circle Groups, 미완)
+//10216번(Count Circle Groups)
 
 public class CountCircleGroupsDrive2 {
 
@@ -17,6 +19,7 @@ public class CountCircleGroupsDrive2 {
 			ccg.n = sc.nextInt();
 			ccg.init();
 			ccg.input(sc);
+			ccg.adj();
 			
 			for(int j = 0; j < ccg.n; j++) {
 				if(!ccg.visit[j]) {
@@ -36,11 +39,31 @@ class CountCircleGroups {
 	int n;
 	int[][] enemies;
 	boolean[] visit;
+	List<ArrayList<Integer>> list;
 	int numberOfGroups;
 	
 	public void init() {
 		enemies = new int[n][3];
 		visit = new boolean[n];
+		list = new ArrayList<>();
+		
+		for(int i = 0; i < n; i++) {
+			list.add(new ArrayList<>());
+		}
+	}
+	
+	public void adj() {
+		for(int i = 0; i < n; i++) {
+			for(int j = i + 1; j < n; j++) {
+				if(isSameGroup(enemies[i], enemies[j])) {
+					list.get(i).add(j);
+					list.get(j).add(i);
+//					for(ArrayList<Integer> item : list) {
+//						System.out.println(item.toString());
+//					}
+				}
+			}
+		}
 	}
 	
 	public void input(Scanner sc) {
@@ -54,24 +77,12 @@ class CountCircleGroups {
 	}
 
 	public void dfs(int next) {
+		visit[next] = true;
 		
-		int[] current = enemies[next];
-		
-		for(int i = 0; i < n; i++) {
-			if(i == next) {
-				continue;
+		for(int i = 0; i < list.get(next).size(); i++) {
+			if(!visit[list.get(next).get(i)]) {
+				dfs(list.get(next).get(i));
 			}
-			
-			if(visit[i]) {
-				continue;
-			}
-			
-			if(!isSameGroup(current, enemies[i])) {
-				continue;
-			}
-			
-			visit[i] = true;
-			dfs(i);
 		}
 		
 	}
