@@ -9,8 +9,6 @@ public class Council {
 	private static int n;
 	private static int[][] arr;
 	private static int max;
-	private static boolean[] visit;
-
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		
@@ -24,7 +22,6 @@ public class Council {
 		}
 		in.close();
 		
-		visit = new boolean[n];
 		max = 0;
 		
 		for(int i = 0; i < n; i++) {
