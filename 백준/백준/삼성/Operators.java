@@ -1,6 +1,5 @@
 package 백준.삼성;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 // 14888번(연산자 끼워넣기)
