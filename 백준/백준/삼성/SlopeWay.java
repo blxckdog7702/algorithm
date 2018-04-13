@@ -26,17 +26,17 @@ public class SlopeWay {
 				arr[i][j] = in.nextInt();
 			}
 		}
-		
+
 		in.close();
 
 		count = 0;
 
 		checkHori(arr);
-		
+
 		for (int i = 0; i < n; i++) {
 			Arrays.fill(visit[i], false);
 		}
-		
+
 		checkVerti(arr);
 
 		System.out.println(count);
@@ -48,13 +48,13 @@ public class SlopeWay {
 			boolean check = true;
 
 			for (int i = 0; i < n - 1; i++) {
+				if (Math.abs(arr[i][j] - arr[i + 1][j]) == 2) {
+					check = false;
+					break;
+				}
+
 				// 큰거 만났을 때
 				if (arr[i][j] < arr[i + 1][j]) {
-					if (arr[i + 1][j] - arr[i][j] == 2) {
-						check = false;
-						break;
-					}
-
 					if (i - (l - 1) < 0) {
 						check = false;
 						break;
@@ -70,17 +70,17 @@ public class SlopeWay {
 							check = false;
 							break;
 						}
+					}
 
-						visit[k][j] = true;
+					// 경사로 조건 모두 만족시 방문처리
+					if (check) {
+						for (int k = i; k >= i - (l - 1); k--) {
+							visit[k][j] = true;
+						}
 					}
 				}
 				// 작은거 만났을때
 				else if (arr[i][j] > arr[i + 1][j]) {
-					if (arr[i][j] - arr[i + 1][j] == 2) {
-						check = false;
-						break;
-					}
-
 					if (i + l >= n) {
 						check = false;
 						break;
@@ -96,9 +96,15 @@ public class SlopeWay {
 							check = false;
 							break;
 						}
-
-						visit[k][j] = true;
 					}
+
+					// 경사로 조건 모두 만족시 방문처리
+					if (check) {
+						for (int k = i + 1; k <= i + l; k++) {
+							visit[k][j] = true;
+						}
+					}
+
 				} else {
 					continue;
 				}
@@ -107,7 +113,7 @@ public class SlopeWay {
 			if (check)
 
 			{
-//				System.out.println("세로 : " + j);
+				// System.out.println("세로 : " + j);
 				count++;
 			}
 
@@ -119,13 +125,13 @@ public class SlopeWay {
 			boolean check = true;
 
 			for (int j = 0; j < n - 1; j++) {
+				if (Math.abs(arr[i][j] - arr[i][j + 1]) == 2) {
+					check = false;
+					break;
+				}
+
 				// 큰거 만났을 때
 				if (arr[i][j] < arr[i][j + 1]) {
-					if (arr[i][j + 1] - arr[i][j] == 2) {
-						check = false;
-						break;
-					}
-
 					if (j - (l - 1) < 0) {
 						check = false;
 						break;
@@ -141,17 +147,18 @@ public class SlopeWay {
 							check = false;
 							break;
 						}
-
-						visit[i][k] = true;
 					}
+
+					// 경사로 조건 모두 만족시 방문처리
+					if (check) {
+						for (int k = j; k >= j - (l - 1); k--) {
+							visit[i][k] = true;
+						}
+					}
+
 				}
 				// 작은거 만났을때
 				else if (arr[i][j] > arr[i][j + 1]) {
-					if (arr[i][j] - arr[i][j + 1] == 2) {
-						check = false;
-						break;
-					}
-
 					if (j + l >= n) {
 						check = false;
 						break;
@@ -167,16 +174,22 @@ public class SlopeWay {
 							check = false;
 							break;
 						}
-
-						visit[i][k] = true;
 					}
+
+					// 경사로 조건 모두 만족시 방문처리
+					if (check) {
+						for (int k = j + 1; k <= j + l; k++) {
+							visit[i][k] = true;
+						}
+					}
+
 				} else {
 					continue;
 				}
 			}
 
 			if (check) {
-//				System.out.println("가로 : " + i);
+				// System.out.println("가로 : " + i);
 				count++;
 			}
 
