@@ -1,6 +1,5 @@
 package 백준.삼성복습;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 // 14889번(스타트와 링크)(복습)
