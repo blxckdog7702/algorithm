@@ -1,8 +1,8 @@
-package algorithm;
+package ë°±ì¤€.ì‚¼ì„±ë³µìŠµ;
 
 import java.util.Scanner;
 
-//14503(·Îº¿Ã»¼Ò±â)(º¹½À)
+//14503(ï¿½Îºï¿½Ã»ï¿½Ò±ï¿½)(ï¿½ï¿½ï¿½ï¿½)
 
 public class Robot {
 

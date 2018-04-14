@@ -1,9 +1,9 @@
-package algorithm;
+package ë°±ì¤€.ì‚¼ì„±;
 
 import java.util.Arrays;
 import java.util.Scanner;
 
-//14500¹ø(Å×Æ®·Î¹Ì³ë)
+//14500ï¿½ï¿½(ï¿½ï¿½Æ®ï¿½Î¹Ì³ï¿½)
 
 public class Tetromino {
 	private static int n;
