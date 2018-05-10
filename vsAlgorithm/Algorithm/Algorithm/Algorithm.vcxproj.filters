@@ -19,6 +19,9 @@
     <Filter Include="소스 파일\sorting">
       <UniqueIdentifier>{a41f5879-d0e7-4bf1-a0e4-5a9a1bf8c8cb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\dataStructure">
+      <UniqueIdentifier>{79e2ad73-6684-474c-9a37-378dd4f7d3cf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -37,6 +40,9 @@
     </ClCompile>
     <ClCompile Include="QuickSort3.cpp">
       <Filter>소스 파일\sorting</Filter>
+    </ClCompile>
+    <ClCompile Include="Stack.cpp">
+      <Filter>소스 파일\dataStructure</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
