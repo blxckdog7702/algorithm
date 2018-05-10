@@ -16,6 +16,9 @@
     <Filter Include="소스 파일\mailProgramming">
       <UniqueIdentifier>{77d7eebd-0f2a-4f19-bafa-6478f2b9fc76}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\sorting">
+      <UniqueIdentifier>{a41f5879-d0e7-4bf1-a0e4-5a9a1bf8c8cb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -25,6 +28,15 @@
   <ItemGroup>
     <ClCompile Include="Question14.cpp">
       <Filter>소스 파일\mailProgramming</Filter>
+    </ClCompile>
+    <ClCompile Include="QuickSort.cpp">
+      <Filter>소스 파일\sorting</Filter>
+    </ClCompile>
+    <ClCompile Include="QuickSort2.cpp">
+      <Filter>소스 파일\sorting</Filter>
+    </ClCompile>
+    <ClCompile Include="QuickSort3.cpp">
+      <Filter>소스 파일\sorting</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
