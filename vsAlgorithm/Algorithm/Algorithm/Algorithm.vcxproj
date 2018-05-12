@@ -150,6 +150,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="InsertionSort.cpp" />
     <ClCompile Include="Q5052.cpp" />
     <ClCompile Include="Question14.cpp" />
     <ClCompile Include="Queue.cpp" />

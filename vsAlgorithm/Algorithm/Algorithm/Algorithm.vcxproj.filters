@@ -59,5 +59,8 @@
     <ClCompile Include="SelectionSort.cpp">
       <Filter>소스 파일\sorting</Filter>
     </ClCompile>
+    <ClCompile Include="InsertionSort.cpp">
+      <Filter>소스 파일\sorting</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
