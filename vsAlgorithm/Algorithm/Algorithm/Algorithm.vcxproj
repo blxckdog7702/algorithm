@@ -156,6 +156,7 @@
     <ClCompile Include="QuickSort.cpp" />
     <ClCompile Include="QuickSort2.cpp" />
     <ClCompile Include="QuickSort3.cpp" />
+    <ClCompile Include="SelectionSort.cpp" />
     <ClCompile Include="Stack.cpp" />
     <ClCompile Include="TrieDrive.cpp" />
   </ItemGroup>
