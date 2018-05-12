@@ -25,6 +25,9 @@
     <Filter Include="소스 파일\백준">
       <UniqueIdentifier>{c38df80e-b9e5-4200-bc22-7740de9c512d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\grammar">
+      <UniqueIdentifier>{e8754ec2-a9cb-4881-aad7-3c208dcd41e7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -67,6 +70,9 @@
     </ClCompile>
     <ClCompile Include="BinarySearch.cpp">
       <Filter>소스 파일\sorting</Filter>
+    </ClCompile>
+    <ClCompile Include="DynamicAllocation.cpp">
+      <Filter>소스 파일\grammar</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

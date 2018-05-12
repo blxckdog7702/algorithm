@@ -152,6 +152,7 @@
   <ItemGroup>
     <ClCompile Include="BinarySearch.cpp" />
     <ClCompile Include="BubbleSort.cpp" />
+    <ClCompile Include="DynamicAllocation.cpp" />
     <ClCompile Include="InsertionSort.cpp" />
     <ClCompile Include="Q5052.cpp" />
     <ClCompile Include="Question14.cpp" />
